@@ -29,6 +29,7 @@ public class EmployeTable {
         frame.setContentPane(panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+        frame.setSize(600,500);
         frame.setVisible(true);
 
         connect();
@@ -67,7 +68,7 @@ public class EmployeTable {
                     return;
                 }
 
-                int selectedId = (int) table1.getValueAt(selectedRow, 0);
+                int selectedId = (int) table1.getModel().getValueAt(table1.getSelectedRow(), 0);
                 String newValue = JOptionPane.showInputDialog("Enter the new value:");
 
                 try {

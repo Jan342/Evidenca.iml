@@ -47,6 +47,7 @@ public class empRegistration {
         frame.setContentPane(panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+        frame.setSize(600,500);
         frame.setVisible(true);
 
         connect();
