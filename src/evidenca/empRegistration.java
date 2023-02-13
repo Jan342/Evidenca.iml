@@ -16,13 +16,8 @@ public class empRegistration {
     private JButton menuButton;
     private JTextField textSalary;
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("empRegistration");
-        frame.setContentPane(new empRegistration().panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
+    private JFrame frame;
+
     Connection con;
     PreparedStatement pst;
     public void connect() {
@@ -44,6 +39,13 @@ public class empRegistration {
 
 
     public empRegistration() {
+
+         frame = new JFrame("empRegistration");
+        frame.setContentPane(panel1);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+
         connect();
     saveButton.addActionListener(new ActionListener() {
         @Override
@@ -88,11 +90,12 @@ public class empRegistration {
 
         }
     });
+
         menuButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                Menu som = new Menu();
-                som.setVisible(true);
+            public void actionPerformed(ActionEvent e) {
+
+                frame.dispose();
             }
         });
     }
