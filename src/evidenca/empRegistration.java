@@ -3,6 +3,8 @@ package evidenca;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.*;
 
 public class empRegistration {
@@ -15,6 +17,7 @@ public class empRegistration {
     private JButton saveButton;
     private JButton menuButton;
     private JTextField textSalary;
+    private JComboBox comboBox1;
 
     private JFrame frame;
 
@@ -51,25 +54,24 @@ public class empRegistration {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
 
-            String name,surname,email,mobile,address,salary;
+            String name,surname,email;
+            int mobile,salary;
 
 
             name = textName.getText();
             surname = textSurname.getText();
             email = textEmail.getText();
-            mobile = textMobile.getText();
-            address = textAddress.getText();
-            salary = textSalary.getText();
+            mobile = Integer.parseInt(textMobile.getText());
+            salary = Integer.parseInt(textSalary.getText());
 
 
             try{
-                pst = con.prepareStatement("insert into zaposleni (ime, priimek, email, telefon, naslov, placa) values(?,?,?,?,?,?)");
+                pst = con.prepareStatement("insert into zaposleni (ime, priimek, email, telefon, placa) values(?,?,?,?,?)");
                 pst.setString(1,name);
                 pst.setString(2,surname);
                 pst.setString(3,email);
-                pst.setString(4,mobile);
-                pst.setString(5,address);
-                pst.setString(6,salary);
+                pst.setInt(4,mobile);
+                pst.setInt(5,salary);
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null,"Registered!");
 
@@ -77,7 +79,6 @@ public class empRegistration {
                 textSurname.setText("");
                 textEmail.setText("");
                 textMobile.setText("");
-                textAddress.setText("");
                 textSalary.setText("");
                 textName.requestFocus();
 
@@ -96,6 +97,22 @@ public class empRegistration {
             public void actionPerformed(ActionEvent e) {
 
                 frame.dispose();
+            }
+        });
+        comboBox1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    pst = con.prepareStatement("SELECT ime FROM kraji");
+                    ResultSet rs = pst.executeQuery();
+                    while(rs.next()){
+                        String name = rs.getString("ime");
+                        comboBox1.addItem(name);
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }
