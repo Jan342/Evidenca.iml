@@ -54,6 +54,7 @@ public class EmployeTable {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+                System.out.println("lmao");
             }
         });
         updateButton.addActionListener(new ActionListener() {
