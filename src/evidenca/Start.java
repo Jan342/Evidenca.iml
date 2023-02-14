@@ -4,6 +4,6 @@ public class Start {
 
     public static void main(String[] args) {
 
-        Menu men = new Menu();
+        LoginPage men = new LoginPage();
     }
 }

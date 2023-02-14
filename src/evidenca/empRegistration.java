@@ -55,7 +55,7 @@ public class empRegistration {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
 
-            String name,surname,email;
+            String name,surname,email,kraj;
             int mobile,salary;
 
 
@@ -64,16 +64,23 @@ public class empRegistration {
             email = textEmail.getText();
             mobile = Integer.parseInt(textMobile.getText());
             salary = Integer.parseInt(textSalary.getText());
+            kraj = comboBox1.getSelectedItem().toString();
+            System.out.print(kraj);
+
 
 
             try{
-                pst = con.prepareStatement("insert into zaposleni (ime, priimek, email, telefon, placa) values(?,?,?,?,?)");
+                pst = con.prepareStatement("SELECT insert_reg(?,?,?,?,?,?)");
+
                 pst.setString(1,name);
                 pst.setString(2,surname);
                 pst.setString(3,email);
                 pst.setInt(4,mobile);
                 pst.setInt(5,salary);
-                pst.executeUpdate();
+                pst.setString(6,kraj);
+
+
+                pst.executeQuery();
                 JOptionPane.showMessageDialog(null,"Registered!");
 
                 textName.setText("");
@@ -105,10 +112,10 @@ public class empRegistration {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 try {
-                    pst = con.prepareStatement("SELECT ime FROM kraji");
+                    pst = con.prepareStatement("SELECT * FROM select_kraj()");
                     ResultSet rs = pst.executeQuery();
                     while(rs.next()){
-                        String name = rs.getString("ime");
+                        String name = rs.getString("ime_kraja");
                         comboBox1.addItem(name);
                     }
                 } catch (SQLException ex) {

@@ -1,8 +1,6 @@
 package evidenca;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -17,7 +15,7 @@ public class LoginPage extends JFrame {
 
         frame = new JFrame("Login Frame");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(250,200));
+        frame.setSize(400,400);
         frame.setResizable(false);
 
         //now add the panel
@@ -43,7 +41,7 @@ public class LoginPage extends JFrame {
 
                 }
                 if (user.equals("admin") && pass.equals("pass")) {
-                        Menu meni = new Menu();
+                        Menu men = new Menu();
                         frame.dispose();
 
                 }

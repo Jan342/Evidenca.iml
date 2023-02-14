@@ -72,10 +72,10 @@ public class EmployeTable {
                 String newValue = JOptionPane.showInputDialog("Enter the new value:");
 
                 try {
-                    PreparedStatement pst = con.prepareStatement("UPDATE zaposleni SET priimek = ? WHERE id = ?");
-                    pst.setString(1, newValue);
-                    pst.setInt(2, selectedId);
-                    pst.executeUpdate();
+                    PreparedStatement pst = con.prepareStatement("SELECT update_zaposleni(?,?)");
+                    pst.setString(2, newValue);
+                    pst.setInt(1, selectedId);
+                    pst.executeQuery();
 
                     JOptionPane.showMessageDialog(null, "Row updated successfully.");
                 } catch (SQLException ex) {
